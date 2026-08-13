@@ -1,0 +1,2245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saarthi CRM — Sales intelligence for growing teams</title>
+  <meta name="description" content="Saarthi CRM helps Indian businesses manage leads, customers, and deals — all in one place. Built for speed, designed for clarity." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Tokens ─────────────────────────────────── */
+    :root {
+      --blue-50:  #eff6ff;
+      --blue-100: #dbeafe;
+      --blue-500: #3b82f6;
+      --blue-600: #2563eb;
+      --blue-700: #1d4ed8;
+      --blue-900: #1e3a8a;
+      --gray-50:  #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-700: #374151;
+      --gray-900: #111827;
+      --white:    #ffffff;
+
+      --font-display: 'Sora', sans-serif;
+      --font-body:    'Inter', sans-serif;
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--gray-900);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ─────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      width: 34px;
+      height: 34px;
+      background: var(--blue-600);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-logo-icon svg { width: 18px; height: 18px; color: white; }
+
+    .nav-logo-text {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--gray-500);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--gray-900); }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-ghost {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--gray-700);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      transition: background 0.15s;
+    }
+
+    .btn-ghost:hover { background: var(--gray-100); }
+
+    .btn-primary {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--blue-600);
+      text-decoration: none;
+      padding: 8px 20px;
+      border-radius: var(--radius-sm);
+      transition: background 0.15s;
+    }
+
+    .btn-primary:hover { background: var(--blue-700); }
+
+    /* ── Hero ─────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 5% 80px;
+      background: linear-gradient(180deg, var(--blue-50) 0%, var(--white) 60%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(37,99,235,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--blue-50);
+      border: 1px solid var(--blue-100);
+      color: var(--blue-600);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--blue-500);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--gray-900);
+      max-width: 820px;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 .accent {
+      color: var(--blue-600);
+      position: relative;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--gray-500);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 64px;
+    }
+
+    .btn-hero-primary {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--blue-600);
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: var(--radius-md);
+      transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 14px rgba(37,99,235,0.3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-hero-primary:hover {
+      background: var(--blue-700);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(37,99,235,0.35);
+    }
+
+    .btn-hero-ghost {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--gray-700);
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--gray-200);
+      background: var(--white);
+      transition: border-color 0.15s, background 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-hero-ghost:hover {
+      border-color: var(--blue-200);
+      background: var(--blue-50);
+    }
+
+    /* ── Dashboard Preview ─────────────────────────── */
+    .hero-preview {
+      width: 100%;
+      max-width: 1000px;
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--gray-200);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.04);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .preview-header {
+      background: var(--gray-50);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .preview-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .preview-body {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      height: 400px;
+    }
+
+    .preview-sidebar {
+      background: var(--gray-50);
+      border-right: 1px solid var(--gray-200);
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--gray-500);
+    }
+
+    .sidebar-item.active {
+      background: var(--blue-50);
+      color: var(--blue-600);
+    }
+
+    .sidebar-icon {
+      width: 16px;
+      height: 16px;
+      background: currentColor;
+      border-radius: 3px;
+      opacity: 0.5;
+    }
+
+    .sidebar-item.active .sidebar-icon { opacity: 1; }
+
+    .preview-main {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .preview-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .preview-title {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+
+    .preview-btn {
+      background: var(--blue-600);
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 6px;
+    }
+
+    .preview-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .stat-card {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+    }
+
+    .stat-label {
+      font-size: 0.6rem;
+      color: var(--gray-400);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+
+    .stat-trend {
+      font-size: 0.6rem;
+      color: #10b981;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .preview-table {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .table-row {
+      display: grid;
+      grid-template-columns: 1fr 80px 60px 70px;
+      padding: 8px 12px;
+      font-size: 0.65rem;
+      border-bottom: 1px solid var(--gray-200);
+      align-items: center;
+    }
+
+    .table-row.header {
+      background: var(--white);
+      color: var(--gray-400);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .table-row:last-child { border-bottom: none; }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 100px;
+      font-size: 0.55rem;
+      font-weight: 600;
+    }
+
+    .badge-green  { background: #d1fae5; color: #065f46; }
+    .badge-blue   { background: var(--blue-50); color: var(--blue-700); }
+    .badge-amber  { background: #fef3c7; color: #92400e; }
+
+    /* ── Social proof ─────────────────────────────── */
+    .social-proof {
+      padding: 48px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      border-top: 1px solid var(--gray-100);
+      border-bottom: 1px solid var(--gray-100);
+      flex-wrap: wrap;
+    }
+
+    .proof-stat {
+      text-align: center;
+    }
+
+    .proof-number {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--gray-900);
+    }
+
+    .proof-label {
+      font-size: 0.8rem;
+      color: var(--gray-400);
+      margin-top: 2px;
+    }
+
+    .proof-divider {
+      width: 1px;
+      height: 40px;
+      background: var(--gray-200);
+    }
+
+    /* ── Features ─────────────────────────────────── */
+    .features {
+      padding: 96px 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--blue-600);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--gray-900);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      max-width: 560px;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--gray-500);
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: 56px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+
+    .feature-card:hover {
+      border-color: var(--blue-200);
+      box-shadow: 0 8px 24px rgba(37,99,235,0.08);
+      transform: translateY(-2px);
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--blue-50);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .feature-icon svg {
+      width: 20px;
+      height: 20px;
+      color: var(--blue-600);
+    }
+
+    .feature-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 8px;
+    }
+
+    .feature-desc {
+      font-size: 0.875rem;
+      color: var(--gray-500);
+      line-height: 1.6;
+    }
+
+    /* ── How it works ─────────────────────────────── */
+    .how {
+      padding: 96px 5%;
+      background: var(--gray-50);
+    }
+
+    .how-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 56px;
+      position: relative;
+    }
+
+    .how-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: calc(16.66% + 28px);
+      right: calc(16.66% + 28px);
+      height: 1px;
+      background: var(--blue-100);
+    }
+
+    .how-step {
+      text-align: center;
+      position: relative;
+    }
+
+    .step-num {
+      width: 56px;
+      height: 56px;
+      background: var(--blue-600);
+      color: white;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 8px;
+    }
+
+    .step-desc {
+      font-size: 0.875rem;
+      color: var(--gray-500);
+      line-height: 1.6;
+    }
+
+    /* ── CTA ──────────────────────────────────────── */
+    .cta {
+      padding: 96px 5%;
+      text-align: center;
+      background: var(--blue-600);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+    }
+
+    .cta::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+    }
+
+    .cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-cta-white {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--blue-600);
+      background: var(--white);
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: var(--radius-md);
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    }
+
+    .btn-cta-white:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+
+    .btn-cta-outline {
+      font-size: 1rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .btn-cta-outline:hover {
+      border-color: rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.08);
+    }
+
+    /* ── Footer ───────────────────────────────────── */
+    footer {
+      padding: 48px 5%;
+      border-top: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .footer-logo-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--blue-600);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.875rem;
+      color: var(--gray-400);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--gray-700); }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--gray-400);
+    }
+
+    /* ── Responsive ───────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .features-grid { grid-template-columns: 1fr; }
+      .how-steps { grid-template-columns: 1fr; }
+      .how-steps::before { display: none; }
+      .preview-body { grid-template-columns: 1fr; }
+      .preview-sidebar { display: none; }
+      .proof-divider { display: none; }
+      .footer-links { display: none; }
+      footer { justify-content: center; text-align: center; }
+    }
+
+    /* ── Contact Form ─────────────────────────────── */
+    .contact {
+      padding: 96px 5%;
+      background: var(--white);
+    }
+
+    .contact-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-left {
+      position: sticky;
+      top: 96px;
+    }
+
+    .contact-info {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .contact-info-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--blue-50);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-info-icon svg {
+      width: 18px;
+      height: 18px;
+      color: var(--blue-600);
+    }
+
+    .contact-info-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 3px;
+    }
+
+    .contact-info-value {
+      font-size: 0.9rem;
+      color: var(--gray-700);
+      font-weight: 500;
+    }
+
+    .contact-form-wrap {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+    }
+
+    .form-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 6px;
+    }
+
+    .form-sub {
+      font-size: 0.875rem;
+      color: var(--gray-400);
+      margin-bottom: 28px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+
+    .form-label span {
+      color: var(--blue-600);
+      margin-left: 2px;
+    }
+
+    .form-input {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      color: var(--gray-900);
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      outline: none;
+      transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+      width: 100%;
+    }
+
+    .form-input:focus {
+      border-color: var(--blue-500);
+      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.08);
+    }
+
+    .form-input::placeholder {
+      color: var(--gray-400);
+    }
+
+    textarea.form-input {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-submit {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--blue-600);
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 13px 24px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .form-submit:hover {
+      background: var(--blue-700);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(37,99,235,0.3);
+    }
+
+    .form-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .form-success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .form-success.show { display: flex; }
+    .form-fields.hide { display: none; }
+
+    .success-icon {
+      width: 60px;
+      height: 60px;
+      background: #d1fae5;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .success-icon svg {
+      width: 28px;
+      height: 28px;
+      color: #065f46;
+    }
+
+    .success-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 8px;
+    }
+
+    .success-sub {
+      font-size: 0.875rem;
+      color: var(--gray-500);
+      line-height: 1.6;
+    }
+
+    .form-error {
+      font-size: 0.75rem;
+      color: #dc2626;
+      margin-top: 4px;
+      display: none;
+    }
+
+    .form-error.show { display: block; }
+
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      display: none;
+    }
+
+    .spinner.show { display: block; }
+
+    @media (max-width: 768px) {
+      .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form-wrap { padding: 24px; }
+      .contact-left { position: static; }
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ── Qualification Modal ─────────────────────── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+
+    .modal-overlay.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 36px 40px;
+      width: 100%;
+      max-width: 480px;
+      height: 580px;
+      overflow-y: auto;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+      transform: translateY(16px) scale(0.98);
+      transition: transform 0.25s;
+      position: relative;
+    }
+
+    .modal-step {
+      display: none;
+    }
+
+    .modal-step.active {
+      display: block;
+    }
+
+    .modal-overlay.show .modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      background: var(--gray-100);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray-500);
+      transition: background 0.15s;
+    }
+
+    .modal-close:hover { background: var(--gray-200); }
+
+    .modal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--blue-50);
+      color: var(--blue-600);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+      letter-spacing: 0.04em;
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .modal-sub {
+      font-size: 0.875rem;
+      color: var(--gray-400);
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    .modal-progress {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 28px;
+    }
+
+    .progress-dot {
+      height: 4px;
+      flex: 1;
+      background: var(--gray-200);
+      border-radius: 100px;
+      transition: background 0.3s;
+    }
+
+    .progress-dot.done { background: var(--blue-600); }
+
+    /* Option chips — Step 1 (column) */
+    .chips {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .chip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      background: var(--white);
+    }
+
+    .chip:hover {
+      border-color: var(--blue-300);
+      background: var(--blue-50);
+    }
+
+    .chip.selected {
+      border-color: var(--blue-600);
+      background: var(--blue-50);
+    }
+
+    .chip-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--gray-100);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .chip.selected .chip-icon { background: var(--blue-100); }
+
+    .chip-text {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--gray-700);
+    }
+
+    .chip.selected .chip-text { color: var(--blue-700); }
+
+    .chip-check {
+      margin-left: auto;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gray-300);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+      flex-shrink: 0;
+    }
+
+    .chip.selected .chip-check {
+      background: var(--blue-600);
+      border-color: var(--blue-600);
+    }
+
+    .chip.selected .chip-check::after {
+      content: '';
+      width: 5px;
+      height: 9px;
+      border: 2px solid white;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg) translate(-1px, -1px);
+      display: block;
+    }
+
+    /* Capsule chips — Step 2 */
+    .capsules {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .capsule {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 100px;
+      cursor: pointer;
+      font-size: 0.825rem;
+      font-weight: 500;
+      color: var(--gray-600);
+      background: var(--white);
+      transition: all 0.15s;
+      user-select: none;
+    }
+
+    .capsule:hover {
+      border-color: var(--blue-300);
+      color: var(--blue-600);
+      background: var(--blue-50);
+    }
+
+    .capsule.selected {
+      border-color: var(--blue-600);
+      background: var(--blue-600);
+      color: var(--white);
+    }
+
+    .capsule.selected .cap-emoji { filter: none; }
+
+    /* Step 3 — email form */
+    .modal-input {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--gray-900);
+      background: var(--gray-50);
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      width: 100%;
+      outline: none;
+      margin-bottom: 12px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .modal-input:focus {
+      border-color: var(--blue-500);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.08);
+    }
+
+    .modal-input::placeholder { color: var(--gray-400); }
+
+    .modal-btn {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: white;
+      background: var(--blue-600);
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 13px 24px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .modal-btn:hover {
+      background: var(--blue-700);
+      transform: translateY(-1px);
+    }
+
+    .modal-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .modal-btn-outline {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--gray-500);
+      background: transparent;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      padding: 11px 24px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .modal-btn-outline:hover {
+      border-color: var(--gray-300);
+      color: var(--gray-700);
+    }
+
+    .modal-success {
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .modal-success-icon {
+      width: 64px;
+      height: 64px;
+      background: #d1fae5;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .modal-success-icon svg {
+      width: 30px;
+      height: 30px;
+      color: #065f46;
+    }
+
+    .modal-success-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 10px;
+    }
+
+    .modal-success-sub {
+      font-size: 0.875rem;
+      color: var(--gray-500);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 480px) {
+      .modal { padding: 28px 20px; }
+      .modal-title { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ──────────────────────────────────────── -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+    </div>
+    <span class="nav-logo-text">Saarthi CRM</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <div class="nav-cta">
+    <button onclick="openModal()" class="btn-primary" style="border:none;cursor:pointer;">Get started</button>
+  </div>
+</nav>
+
+<!-- ── Hero ─────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    Now live — built for Indian teams
+  </div>
+
+  <h1>
+    The CRM that grows<br/>
+    with your <span class="accent">business</span>
+  </h1>
+
+  <p class="hero-sub">
+    Manage leads, track deals, and close more customers —
+    without the complexity of enterprise software.
+    Simple, fast, and built for the way Indian teams work.
+  </p>
+
+  <div class="hero-actions">
+    <button onclick="openModal()" class="btn-hero-primary" style="border:none;cursor:pointer;">
+      Start for free
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </button>
+    <a href="mailto:support@saarthicrm.in" class="btn-hero-ghost">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+      Talk to us
+    </a>
+  </div>
+
+  <!-- Dashboard preview -->
+  <div class="hero-preview">
+    <div class="preview-header">
+      <div class="preview-dot" style="background:#ff5f57"></div>
+      <div class="preview-dot" style="background:#ffbd2e"></div>
+      <div class="preview-dot" style="background:#28c840"></div>
+    </div>
+    <div class="preview-body">
+      <div class="preview-sidebar">
+        <div class="sidebar-item active">
+          <div class="sidebar-icon" style="border-radius:50%"></div>
+          Dashboard
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-icon"></div>
+          Leads
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-icon"></div>
+          Customers
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-icon"></div>
+          Accounts
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-icon" style="border-radius:50%"></div>
+          Email
+        </div>
+      </div>
+      <div class="preview-main">
+        <div class="preview-topbar">
+          <span class="preview-title">Leads</span>
+          <span class="preview-btn">+ New Lead</span>
+        </div>
+        <div class="preview-stats">
+          <div class="stat-card">
+            <div class="stat-label">Total Leads</div>
+            <div class="stat-value">1,284</div>
+            <div class="stat-trend">↑ 12% this month</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Converted</div>
+            <div class="stat-value">348</div>
+            <div class="stat-trend">↑ 8% this month</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Active</div>
+            <div class="stat-value">936</div>
+            <div class="stat-trend">↑ 5% this month</div>
+          </div>
+        </div>
+        <div class="preview-table">
+          <div class="table-row header">
+            <span>Name</span>
+            <span>Company</span>
+            <span>Status</span>
+            <span>Assigned</span>
+          </div>
+          <div class="table-row">
+            <span>Amit Sharma</span>
+            <span>Techwave</span>
+            <span><span class="badge badge-green">Active</span></span>
+            <span>Priya K.</span>
+          </div>
+          <div class="table-row">
+            <span>Riya Patel</span>
+            <span>Infosys</span>
+            <span><span class="badge badge-blue">New</span></span>
+            <span>Dev G.</span>
+          </div>
+          <div class="table-row">
+            <span>Rahul Verma</span>
+            <span>StartupX</span>
+            <span><span class="badge badge-amber">Follow up</span></span>
+            <span>Priya K.</span>
+          </div>
+          <div class="table-row">
+            <span>Sneha Joshi</span>
+            <span>Wipro</span>
+            <span><span class="badge badge-green">Active</span></span>
+            <span>Dev G.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Social proof ──────────────────────────────── -->
+<div class="social-proof">
+  <div class="proof-stat">
+    <div class="proof-number">10k+</div>
+    <div class="proof-label">Leads managed</div>
+  </div>
+  <div class="proof-divider"></div>
+  <div class="proof-stat">
+    <div class="proof-number">99.9%</div>
+    <div class="proof-label">Uptime</div>
+  </div>
+  <div class="proof-divider"></div>
+  <div class="proof-stat">
+    <div class="proof-number">< 200ms</div>
+    <div class="proof-label">Response time</div>
+  </div>
+  <div class="proof-divider"></div>
+  <div class="proof-stat">
+    <div class="proof-number">India</div>
+    <div class="proof-label">Hosted locally</div>
+  </div>
+</div>
+
+<!-- ── Contact ───────────────────────────────────── -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <!-- Left -->
+    <div class="contact-left">
+      <div class="section-label">Get in touch</div>
+      <h2 class="section-title">Let's talk about your business</h2>
+      <p class="section-sub">
+        Tell us about your team and we'll show you how Saarthi CRM can help you close more deals, faster.
+      </p>
+
+      <div class="contact-info">
+        <div class="contact-info-item">
+          <div class="contact-info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-info-label">Email us</div>
+            <div class="contact-info-value">support@saarthicrm.in</div>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="contact-info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-info-label">Based in</div>
+            <div class="contact-info-value">India 🇮🇳</div>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="contact-info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-info-label">Response time</div>
+            <div class="contact-info-value">Within 24 hours</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right — Form -->
+    <div class="contact-form-wrap">
+      <div class="form-fields" id="formFields">
+        <div class="form-title">Send us a message</div>
+        <p class="form-sub">We'll get back to you within one business day.</p>
+
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="firstName">First name <span>*</span></label>
+              <input class="form-input" type="text" id="firstName" placeholder="Amit" required />
+              <span class="form-error" id="firstNameErr">Please enter your first name</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="lastName">Last name</label>
+              <input class="form-input" type="text" id="lastName" placeholder="Sharma" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Work email <span>*</span></label>
+            <input class="form-input" type="email" id="email" placeholder="amit@company.com" />
+            <span class="form-error" id="emailErr">Please enter a valid email</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="phone">Phone number</label>
+            <input class="form-input" type="tel" id="phone" placeholder="+91 98765 43210" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="company">Company name</label>
+            <input class="form-input" type="text" id="company" placeholder="Your company" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">I'm interested in</label>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:4px;">
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:0.875rem;color:var(--gray-700);">
+                <input type="radio" name="interest" id="interestGeneral" value="general" checked
+                  style="accent-color:var(--blue-600);width:16px;height:16px;" />
+                General enquiry
+              </label>
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:0.875rem;color:var(--gray-700);">
+                <input type="radio" name="interest" id="interestDemo" value="demo"
+                  style="accent-color:var(--blue-600);width:16px;height:16px;" />
+                Schedule a demo
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group" id="demoDateGroup" style="display:none;">
+            <label class="form-label" for="demoDate">Preferred date & time</label>
+            <input class="form-input" type="datetime-local" id="demoDate" />
+            <div style="font-size:0.75rem;color:var(--gray-400);margin-top:4px;">
+              We'll confirm within 24 hours. All times in IST.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="message">How can we help? <span>*</span></label>
+            <textarea class="form-input" id="message" placeholder="Tell us about your team size, current challenges, or what you're looking for..." required></textarea>
+            <span class="form-error" id="messageErr">Please enter a message</span>
+          </div>
+
+          <button type="submit" class="form-submit" id="submitBtn">
+            <span id="submitText">Send message</span>
+            <div class="spinner" id="spinner"></div>
+            <svg id="submitIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <div class="form-success" id="formSuccess">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <div class="success-title" id="successTitle">Message received!</div>
+        <p class="success-sub" id="successSub">
+          Thanks for reaching out. Our team will get back to you at your email within one business day.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Features ──────────────────────────────────── -->
+<section class="features" id="features">
+  <div class="section-label">Features</div>
+  <h2 class="section-title">Everything your sales team needs</h2>
+  <p class="section-sub">
+    No bloat, no complex setup. Just the tools that help you
+    capture more leads and close more deals.
+  </p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <div class="feature-title">Lead Management</div>
+      <p class="feature-desc">
+        Capture, track, and nurture leads through every stage of your pipeline. Never let a prospect slip through the cracks.
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+      </div>
+      <div class="feature-title">Email Campaigns</div>
+      <p class="feature-desc">
+        Send personalised emails directly from your CRM. Track opens, bounces, and replies — all in one place.
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <line x1="3" y1="9" x2="21" y2="9"/>
+          <line x1="3" y1="15" x2="21" y2="15"/>
+          <line x1="9" y1="3" x2="9" y2="21"/>
+          <line x1="15" y1="3" x2="15" y2="21"/>
+        </svg>
+      </div>
+      <div class="feature-title">Custom Objects</div>
+      <p class="feature-desc">
+        Build your own data structures. Define fields, layouts, and relationships that match exactly how your business works.
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+      </div>
+      <div class="feature-title">Comments & Notes</div>
+      <p class="feature-desc">
+        Keep your team in sync with threaded comments, @mentions, and a full activity timeline on every record.
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+        </svg>
+      </div>
+      <div class="feature-title">File Attachments</div>
+      <p class="feature-desc">
+        Attach contracts, proposals, and documents directly to records. Everything your team needs — right where they need it.
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 20V10"/>
+          <path d="M12 20V4"/>
+          <path d="M6 20v-6"/>
+        </svg>
+      </div>
+      <div class="feature-title">Role-Based Access</div>
+      <p class="feature-desc">
+        Control exactly who can view, create, edit, or delete data. Fine-grained permissions for every team member.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── How it works ──────────────────────────────── -->
+<section class="how" id="how">
+  <div class="how-inner">
+    <div class="section-label">How it works</div>
+    <h2 class="section-title">Up and running in minutes</h2>
+    <p class="section-sub">
+      No IT team required. No weeks of onboarding. Just sign up and start managing your customers.
+    </p>
+
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="step-num">1</div>
+        <div class="step-title">Create your workspace</div>
+        <p class="step-desc">Sign up and set up your team in minutes. Invite your colleagues and assign roles instantly.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">2</div>
+        <div class="step-title">Import your data</div>
+        <p class="step-desc">Bring your existing leads and customers. We support CSV import and custom field mapping.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">3</div>
+        <div class="step-title">Start closing deals</div>
+        <p class="step-desc">Track conversations, send emails, and manage your pipeline — all from one clean interface.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── CTA ───────────────────────────────────────── -->
+<section class="cta">
+  <h2>Ready to grow your business?</h2>
+  <p>Join teams already using Saarthi CRM to manage their customers better.</p>
+  <div class="cta-actions">
+    <button onclick="openModal()" class="btn-cta-white" style="border:none;cursor:pointer;">Get started free</button>
+    <a href="mailto:support@saarthicrm.in" class="btn-cta-outline">Talk to our team</a>
+  </div>
+</section>
+
+<!-- ── Footer ────────────────────────────────────── -->
+<footer>
+  <a href="#" class="footer-logo">
+    <div class="footer-logo-icon">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+    </div>
+    <span class="footer-brand">Saarthi CRM</span>
+  </a>
+
+  <ul class="footer-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="mailto:support@saarthicrm.in">Support</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <p class="footer-copy">© 2026 Saarthi CRM. Made in India 🇮🇳</p>
+</footer>
+
+
+<script>
+  // Show/hide demo date field
+  document.querySelectorAll('input[name="interest"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      const isDemo = document.getElementById('interestDemo').checked;
+      document.getElementById('demoDateGroup').style.display = isDemo ? 'block' : 'none';
+      document.querySelector('.form-title').textContent = isDemo
+        ? 'Schedule a free demo'
+        : 'Send us a message';
+      document.querySelector('.form-sub').textContent = isDemo
+        ? 'Pick a time and we\'ll walk you through Saarthi CRM live.'
+        : 'We\'ll get back to you within one business day.';
+      document.getElementById('submitText').textContent = isDemo
+        ? 'Request demo'
+        : 'Send message';
+    });
+  });
+
+  // selectDemo() called from hero button
+  function selectDemo() {
+    setTimeout(() => {
+      document.getElementById('interestDemo').checked = true;
+      document.getElementById('interestDemo').dispatchEvent(new Event('change'));
+    }, 400);
+  }
+
+  const form     = document.getElementById('contactForm');
+  const submitBtn  = document.getElementById('submitBtn');
+  const submitText = document.getElementById('submitText');
+  const spinner    = document.getElementById('spinner');
+  const submitIcon = document.getElementById('submitIcon');
+  const formFields = document.getElementById('formFields');
+  const formSuccess = document.getElementById('formSuccess');
+
+  function showError(id, show) {
+    document.getElementById(id).classList.toggle('show', show);
+  }
+
+  function validate() {
+    let valid = true;
+
+    const firstName = document.getElementById('firstName').value.trim();
+    showError('firstNameErr', !firstName);
+    if (!firstName) valid = false;
+
+    const email = document.getElementById('email').value.trim();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    showError('emailErr', !emailOk);
+    if (!emailOk) valid = false;
+
+    const message = document.getElementById('message').value.trim();
+    showError('messageErr', !message);
+    if (!message) valid = false;
+
+    return valid;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!validate()) { return; }
+
+    // Loading state
+    submitBtn.disabled = true;
+    submitText.textContent = 'Sending...';
+    spinner.classList.add('show');
+    submitIcon.style.display = 'none';
+
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName  = document.getElementById('lastName').value.trim();
+    const email     = document.getElementById('email').value.trim();
+    const phone     = document.getElementById('phone').value.trim();
+    const company   = document.getElementById('company').value.trim();
+    const message   = document.getElementById('message').value.trim();
+    const isDemo    = document.getElementById('interestDemo')?.checked || false;
+    const demoDate  = document.getElementById('demoDate')?.value || '';
+
+    const formData = { FirstName: firstName, EmailId: email };
+    if (lastName)             formData.LastName    = lastName;
+    if (phone)                formData.PhoneNumber = phone;
+    if (company)              formData.CompanyName = company;
+    if (message)              formData.TextArea    = message;
+    if (isDemo && demoDate)   formData.DateTime    = demoDate;
+
+    try {
+      const res = await fetch(`${API_BASE}/api/Create/Lead`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ data: formData })
+      });
+      const json = await res.json();
+      if (!json.isSuccess) throw new Error(json.errorMessage || 'Something went wrong.');
+
+      // Show success
+      document.getElementById('successTitle').textContent = isDemo
+        ? 'Demo request received!'
+        : 'Message received!';
+      document.getElementById('successSub').textContent = isDemo
+        ? 'We\'ll confirm your demo slot within 24 hours. Check your email for confirmation.'
+        : 'Thanks for reaching out. Our team will get back to you within one business day.';
+      formFields.classList.add('hide');
+      formSuccess.classList.add('show');
+
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitText.textContent = 'Send message';
+      spinner.classList.remove('show');
+      submitIcon.style.display = '';
+      alert('Error: ' + err.message);
+    }
+  });
+</script>
+
+
+<!-- ── Qualification Modal ──────────────────────── -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+
+    <!-- Progress -->
+    <div class="modal-progress">
+      <div class="progress-dot done" id="dot1"></div>
+      <div class="progress-dot" id="dot2"></div>
+      <div class="progress-dot" id="dot3"></div>
+    </div>
+
+    <!-- Step 1 — Team size -->
+    <div class="modal-step active" id="step1">
+      <div class="modal-badge">Step 1 of 3</div>
+      <div class="modal-title">How big is your team?</div>
+      <p class="modal-sub">We'll tailor our onboarding based on your team size.</p>
+
+      <div class="chips">
+        <div class="chip" onclick="selectChip(this,'teamSize','1-5')">
+          <div class="chip-icon">👤</div>
+          <span class="chip-text">Just me or 1–5 people</span>
+          <div class="chip-check"></div>
+        </div>
+        <div class="chip" onclick="selectChip(this,'teamSize','6-20')">
+          <div class="chip-icon">👥</div>
+          <span class="chip-text">6–20 people</span>
+          <div class="chip-check"></div>
+        </div>
+        <div class="chip" onclick="selectChip(this,'teamSize','20+')">
+          <div class="chip-icon">🏢</div>
+          <span class="chip-text">20+ people</span>
+          <div class="chip-check"></div>
+        </div>
+      </div>
+
+      <button class="modal-btn" id="step1Next" onclick="goToStep(2)" disabled>
+        Continue
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Step 2 — Challenges (multi-select max 3) -->
+    <div class="modal-step" id="step2">
+      <div class="modal-badge">Step 2 of 3</div>
+      <div class="modal-title">What are your challenges?</div>
+      <p class="modal-sub">Select up to 3 that matter most to your team.</p>
+      <div style="font-size:0.72rem;color:var(--blue-600);font-weight:600;margin-bottom:14px;" id="selectionCount">0 of 3 selected</div>
+
+      <div class="capsules" id="challengeChips">
+        <div class="capsule" onclick="toggleChallenge(this,'leads')">🎯 Lead tracking</div>
+        <div class="capsule" onclick="toggleChallenge(this,'email')">📧 Email campaigns</div>
+        <div class="capsule" onclick="toggleChallenge(this,'team')">🤝 Team collaboration</div>
+        <div class="capsule" onclick="toggleChallenge(this,'reporting')">📊 Reporting</div>
+        <div class="capsule" onclick="toggleChallenge(this,'followup')">🔔 Follow-ups</div>
+        <div class="capsule" onclick="toggleChallenge(this,'pipeline')">🚀 Sales pipeline</div>
+        <div class="capsule" onclick="toggleChallenge(this,'files')">📁 File management</div>
+        <div class="capsule" onclick="toggleChallenge(this,'access')">🔒 Access control</div>
+      </div>
+
+      <button class="modal-btn" id="step2Next" onclick="goToStep(3)" disabled>
+        Continue
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+      <button class="modal-btn-outline" onclick="goToStep(1)">← Back</button>
+    </div>
+
+    <!-- Step 3 — Contact details -->
+    <div class="modal-step" id="step3">
+      <div class="modal-badge">Step 3 of 3</div>
+      <div class="modal-title">Almost there!</div>
+      <p class="modal-sub">Tell us a bit more so we can personalise your experience.</p>
+      <p style="font-size:0.72rem;color:var(--gray-400);margin-bottom:16px;">Fields marked with * are required</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
+        <input class="modal-input" type="text" id="modalFirstName" placeholder="First name *" style="margin-bottom:0;border-color:var(--blue-200);" />
+        <input class="modal-input" type="text" id="modalLastName" placeholder="Last name" style="margin-bottom:0;" />
+      </div>
+      <input class="modal-input" type="email" id="modalEmail" placeholder="Work email address *" style="border-color:var(--blue-200);" />
+      <input class="modal-input" type="tel" id="modalPhone" placeholder="Phone number (optional)" />
+      <textarea class="modal-input" id="modalMessage" placeholder="Tell us about your current setup... *" style="resize:vertical;min-height:90px;border-color:var(--blue-200);"></textarea>
+
+      <button class="modal-btn" id="step3Submit" onclick="submitModal()">
+        <span id="modalSubmitText">Get early access</span>
+        <div class="spinner" id="modalSpinner"></div>
+        <svg id="modalSubmitIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+      <button class="modal-btn-outline" onclick="goToStep(2)">← Back</button>
+    </div>
+
+    <!-- Success -->
+    <div class="modal-step" id="stepSuccess">
+      <div class="modal-success">
+        <div class="modal-success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <div class="modal-success-title">You're on the list! 🎉</div>
+        <p class="modal-success-sub">
+          Thanks <strong id="modalSuccessName"></strong>! We'll reach out to your email shortly with next steps.
+        </p>
+        <button class="modal-btn" onclick="closeModal()">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── API Config — change for local testing ──
+  //const API_BASE = 'https://localhost:7168';
+  const API_BASE = 'https://api.saarthicrm.in';
+
+  const modalData = { teamSize: null, challenge: null };
+
+  function openModal() {
+    // Reset submit button state
+    const btn = document.getElementById('step3Submit');
+    btn.disabled = false;
+    document.getElementById('modalSubmitText').textContent = 'Get early access';
+    document.getElementById('modalSpinner').classList.remove('show');
+    document.getElementById('modalSubmitIcon').style.display = '';
+
+    // Reset form fields
+    ['modalFirstName','modalLastName','modalEmail','modalPhone','modalMessage'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) { el.value = ''; el.style.borderColor = ''; }
+    });
+
+    // Reset step 1 chips
+    document.querySelectorAll('#step1 .chip').forEach(ch => ch.classList.remove('selected'));
+    document.getElementById('step1Next').disabled = true;
+    modalData.teamSize = null;
+
+    document.getElementById('modalOverlay').classList.add('show');
+    document.body.style.overflow = 'hidden';
+    goToStep(1);
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  function closeModalOnOverlay(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  function goToStep(n) {
+    if (n === 1) {
+      selectedChallenges.clear();
+      document.querySelectorAll('#challengeChips .capsule').forEach(ch => {
+        ch.classList.remove('selected');
+        ch.style.opacity = '';
+        ch.style.pointerEvents = '';
+      });
+      document.getElementById('selectionCount').textContent = '0 of 3 selected';
+      document.getElementById('step2Next').disabled = true;
+    }
+    document.querySelectorAll('.modal-step').forEach(s => s.classList.remove('active'));
+    document.getElementById('step' + (n === 'success' ? 'Success' : n)).classList.add('active');
+
+    // Update progress dots
+    ['dot1','dot2','dot3'].forEach((id, i) => {
+      document.getElementById(id).classList.toggle('done', i < n);
+    });
+  }
+
+  function selectChip(el, field, value) {
+    el.closest('.chips').querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    modalData[field] = value;
+    if (field === 'teamSize') document.getElementById('step1Next').disabled = false;
+  }
+
+  const selectedChallenges = new Set();
+
+  function toggleChallenge(el, value) {
+    if (el.classList.contains('selected')) {
+      el.classList.remove('selected');
+      selectedChallenges.delete(value);
+    } else {
+      if (selectedChallenges.size >= 3) return; // max 3
+      el.classList.add('selected');
+      selectedChallenges.add(value);
+    }
+    const count = selectedChallenges.size;
+    document.getElementById('selectionCount').textContent = count + ' of 3 selected';
+    document.getElementById('step2Next').disabled = count === 0;
+
+    // Dim unselected chips when max reached
+    document.querySelectorAll('#challengeChips .capsule').forEach(cap => {
+      if (!cap.classList.contains('selected') && selectedChallenges.size >= 3) {
+        cap.style.opacity = '0.4';
+        cap.style.pointerEvents = 'none';
+      } else {
+        cap.style.opacity = '';
+        cap.style.pointerEvents = '';
+      }
+    });
+  }
+
+  async function submitModal() {
+    const firstName = document.getElementById('modalFirstName').value.trim();
+    const lastName  = document.getElementById('modalLastName').value.trim();
+    const email = document.getElementById('modalEmail').value.trim();
+    const phone = document.getElementById('modalPhone').value.trim();
+
+    const message = document.getElementById('modalMessage').value.trim();
+    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!firstName || !emailValid || !message) {
+      if (!firstName)  document.getElementById('modalFirstName').style.borderColor = '#dc2626';
+      if (!emailValid) document.getElementById('modalEmail').style.borderColor = '#dc2626';
+      if (!message)    document.getElementById('modalMessage').style.borderColor = '#dc2626';
+      return;
+    }
+
+    // Loading
+    document.getElementById('step3Submit').disabled = true;
+    document.getElementById('modalSubmitText').textContent = 'Submitting...';
+    document.getElementById('modalSpinner').classList.add('show');
+    document.getElementById('modalSubmitIcon').style.display = 'none';
+
+
+
+    try {
+      // Map team size to numeric value
+      const teamSizeMap = { '1-5': 1, '6-20': 2, '20+': 3 };
+
+      // Map team size to numeric value
+
+      const modalData2 = {
+        FirstName: firstName,
+        EmailId:   email,
+      };
+      if (lastName)                     modalData2.LastName    = lastName;
+      if (phone)                        modalData2.PhoneNumber = phone;
+      if (message)                      modalData2.TextArea    = message;
+      if (modalData.teamSize)           modalData2.TeamSize    = teamSizeMap[modalData.teamSize];
+      if (selectedChallenges.size > 0)  modalData2.Challenges  = Array.from(selectedChallenges).join(',');
+
+      const res = await fetch(`${API_BASE}/api/Create/Lead`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ data: modalData2 })
+      });
+      const json = await res.json();
+      if (!res.ok || !json.isSuccess) throw new Error(json.errorMessage || 'API error');
+
+      document.getElementById('modalSuccessName').textContent = firstName;
+      goToStep('success');
+
+    } catch (err) {
+      document.getElementById('step3Submit').disabled = false;
+      document.getElementById('modalSubmitText').textContent = 'Get early access';
+      document.getElementById('modalSpinner').classList.remove('show');
+      document.getElementById('modalSubmitIcon').style.display = '';
+      alert('Error: ' + err.message);
+    }
+  }
+
+  // Keyboard close
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // Reset border on input
+  ['modalFirstName','modalLastName','modalEmail','modalMessage'].forEach(id => {
+    document.getElementById(id)?.addEventListener('input', function() {
+      this.style.borderColor = '';
+    });
+  });
+</script>
+
+</body>
+</html>
